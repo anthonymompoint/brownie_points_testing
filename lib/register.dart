@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Register extends StatelessWidget {
+class register extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextStyle style = TextStyle(fontFamily: 'sans-serif', fontSize: 20.0);

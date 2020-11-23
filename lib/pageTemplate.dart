@@ -4,7 +4,7 @@ import 'package:brownie_points_testing/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class PageTemplate extends StatelessWidget {
+class pageTemplate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,8 +25,9 @@ class NavBar extends StatefulWidget {
 }
 
 class _NavBarState extends State<NavBar> {
+  @override
 
-  int currentIndex = 2;
+  int _currentIndex = 2;
 
   final tabNames = [
     "Favorites",
@@ -37,7 +38,7 @@ class _NavBarState extends State<NavBar> {
 
   final tabs = [
     Center(child:Text("Favorites")),
-    Center(child:Text("Search")),
+    SearchPage(),
     Center(child:Text("New Recipe")),
     ProfilePage(),
   ];
@@ -45,11 +46,11 @@ class _NavBarState extends State<NavBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text(tabNames[currentIndex]),
+          title: Text(tabNames[_currentIndex]),
       ),
-      body: tabs[currentIndex],
+      body: tabs[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentIndex,
+        currentIndex: _currentIndex,
         items:[
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite),
@@ -75,7 +76,7 @@ class _NavBarState extends State<NavBar> {
         onTap: (index) {
           setState((){
             setState(() {
-              currentIndex = index;
+              _currentIndex = index;
             });
           });
         }
@@ -164,3 +165,58 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 }
+
+class SearchPage extends StatefulWidget {
+  @override
+  _SearchPageState createState() => _SearchPageState();
+}
+
+class _SearchPageState extends State<SearchPage> {
+  @override
+
+  List<String> names = ["Recipe1", "Recipe2", "Recipe3", "Recipe2", "Recipe3", "Recipe2", "Recipe3", "Recipe2", "Recipe3", "Recipe2", "Recipe3", "Recipe2", "Recipe3", "Recipe2", "Recipe3", "Recipe2", "Recipe3"];
+
+  Widget build(BuildContext context) {
+    return ListView.separated(
+        itemCount: names.length,
+        separatorBuilder: (BuildContext context, int index) => const Divider(),
+        itemBuilder: (BuildContext context, int index)
+        {
+          return createRecipieCard('${names[index]}', null, null);
+        },
+    );
+  }
+
+  Card createRecipieCard(String name, String image, String user)
+  {
+    Image img;
+    if(image == null)
+      img = Image.network("https://banner.uclipart.com/20200112/lqt/mexican-food-cartoon-line.png");
+    else
+      img = Image.network(image);
+    if(name == null)
+        name = "College Degree";
+    if(user == null)
+      user = "Rick Leinicker";
+
+    return Card(
+      clipBehavior: Clip.antiAlias,
+      child: Column(
+        children: [ListTile(
+          title: Text(name),
+          subtitle: Text(user),
+          ),
+
+          img,
+          FlatButton(
+            onPressed: () {
+              //TODO: Favorite that recipe
+            },
+            child: Text('Favorite'),
+          ),
+        ],
+      ),
+    );
+  }
+}
+

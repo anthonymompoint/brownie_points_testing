@@ -4,9 +4,9 @@
 
 import 'package:brownie_points_testing/pageTemplate.dart';
 import 'package:brownie_points_testing/register.dart';
+import 'package:brownie_points_testing/forgotPassword.dart';
 import 'package:flutter/material.dart';
 
-import 'forgotPassword.dart';
 
 void main() => runApp(MyApp());
 
@@ -69,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
           //TODO: Implement functionality on login
           Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => PageTemplate()),
+              MaterialPageRoute(builder: (context) => pageTemplate()),
           );
         },
         child: Text("Login",
@@ -88,7 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => Register()),
+            MaterialPageRoute(builder: (context) => register()),
           );
         },
         child: Text("Register",
@@ -106,7 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: () {
           Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => ForgotPassword()),
+          MaterialPageRoute(builder: (context) => forgotPassword()),
           );
         },
         child: Text("Forgot Password?",
