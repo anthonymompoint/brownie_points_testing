@@ -6,9 +6,13 @@ import 'package:brownie_points_testing/pageTemplate.dart';
 import 'package:brownie_points_testing/register.dart';
 import 'package:brownie_points_testing/forgotPassword.dart';
 import 'package:flutter/material.dart';
+import 'package:brownie_points_testing/database/connect.dart';
 
-
-void main() => runApp(MyApp());
+void main() {
+  DBConnection db = DBConnection.getInstance();
+  print(db.getConnection().toString());
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
